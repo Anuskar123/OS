@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating Systems Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Operating Systems Quiz</h1>
+            <div class="navigation-buttons">
+                <button id="quiz-btn" class="nav-btn active">Quiz</button>
+                <button id="notes-btn" class="nav-btn">Study Notes</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="question-counter">
+                <span id="current-question">1</span> of <span id="total-questions">60</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="quiz-container" id="quiz-container">
+                <div class="question-section">
+                    <h2 id="question-text"></h2>
+                </div>
+
+                <div class="options-section">
+                    <div class="option" data-option="A">
+                        <span class="option-letter">A</span>
+                        <span class="option-text" id="option-a"></span>
+                    </div>
+                    <div class="option" data-option="B">
+                        <span class="option-letter">B</span>
+                        <span class="option-text" id="option-b"></span>
+                    </div>
+                    <div class="option" data-option="C">
+                        <span class="option-letter">C</span>
+                        <span class="option-text" id="option-c"></span>
+                    </div>
+                    <div class="option" data-option="D">
+                        <span class="option-letter">D</span>
+                        <span class="option-text" id="option-d"></span>
+                    </div>
+                </div>
+
+                <div class="explanation-section" id="explanation-section" style="display: none;">
+                    <h3>Explanation:</h3>
+                    <p id="explanation-text"></p>
+                </div>
+
+                <div class="buttons-section">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn">Next</button>
+                    <button id="submit-btn" style="display: none;">Submit Quiz</button>
+                    <button id="show-answer-btn">Show Answer</button>
+                </div>
+            </div>
+
+            <div class="results-section" id="results-section" style="display: none;">
+                <h2>Quiz Complete!</h2>
+                <div class="score-display">
+                    <p>Your Score: <span id="final-score"></span> / 110</p>
+                    <p>Percentage: <span id="percentage"></span>%</p>
+                    <div class="grade" id="grade"></div>
+                </div>
+                <div class="summary">
+                    <h3>Summary:</h3>
+                    <p>Correct Answers: <span id="correct-count"></span></p>
+                    <p>Incorrect Answers: <span id="incorrect-count"></span></p>
+                </div>
+                <button id="restart-btn">Restart Quiz</button>
+                <button id="review-btn">Review Answers</button>
+            </div>
+
+            <div class="notes-section" id="notes-section" style="display: none;">
+                <div class="notes-content">
+                    <h2>Operating Systems - Comprehensive Study Notes</h2>
+                    <p class="notes-subtitle">Easy-to-Understand Concepts and Summary</p>
+                    
+                    <div class="table-of-contents">
+                        <h3>📚 Table of Contents</h3>
+                        <ol>
+                            <li><a href="#access-rights">Access Rights & File Permissions</a></li>
+                            <li><a href="#file-systems">File Systems & Management</a></li>
+                            <li><a href="#memory-management">Memory Management</a></li>
+                            <li><a href="#virtual-memory">Virtual Memory</a></li>
+                            <li><a href="#process-management">Process Management</a></li>
+                            <li><a href="#cpu-scheduling">CPU Scheduling</a></li>
+                            <li><a href="#ipc">Inter-Process Communication (IPC)</a></li>
+                            <li><a href="#signals">Signals</a></li>
+                            <li><a href="#synchronization">Synchronization & Deadlocks</a></li>
+                            <li><a href="#io-management">I/O & Device Management</a></li>
+                            <li><a href="#system-calls">System Calls</a></li>
+                            <li><a href="#performance">Performance & Optimization</a></li>
+                            <li><a href="#security">Security</a></li>
+                            <li><a href="#modern-features">Modern OS Features</a></li>
+                        </ol>
+                    </div>
+
+                    <div class="notes-topics">
+                        <!-- Access Rights Section -->
+                        <div class="topic-section" id="access-rights">
+                            <h3>🔐 1. Access Rights & File Permissions</h3>
+                            
+                            <div class="key-concepts">
+                                <h4>Key Concepts:</h4>
+                                <ul>
+                                    <li><strong>File permissions control who can do what with files</strong></li>
+                                    <li><strong>Three types of users:</strong> Owner, Group, Others</li>
+                                    <li><strong>Three types of permissions:</strong> Read (r), Write (w), Execute (x)</li>
+                                </ul>
+                            </div>
+
+                            <div class="understanding-section">
+                                <h4>Understanding UNIX Permissions:</h4>
+                                <div class="code-block">
+                                    <pre>-rwxr-xr--
+│└┬┘└┬┘└┬┘
+│ │  │  └── Others permissions (r--)
+│ │  └───── Group permissions (r-x)
+│ └──────── Owner permissions (rwx)
+└─────────── File type (- = regular file, d = directory)</pre>
+                                </div>
+                            </div>
+
+                            <div class="numeric-notation">
+                                <h4>Numeric Notation:</h4>
+                                <ul>
+                                    <li><strong>Read = 4, Write = 2, Execute = 1</strong></li>
+                                    <li><strong>rwx = 4+2+1 = 7</strong></li>
+                                    <li><strong>r-x = 4+0+1 = 5</strong></li>
+                                    <li><strong>r-- = 4+0+0 = 4</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of permissions like a <strong>house key system</strong>:</p>
+                                <ul>
+                                    <li><strong>Owner</strong> = Homeowner (full access)</li>
+                                    <li><strong>Group</strong> = Family members (limited access)</li>
+                                    <li><strong>Others</strong> = Strangers (minimal access)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- File Systems Section -->
+                        <div class="topic-section" id="file-systems">
+                            <h3>📁 2. File Systems & Management</h3>
+                            
+                            <div class="key-concepts">
+                                <h4>Core File System Services:</h4>
+                                <ol>
+                                    <li><strong>Create</strong> files</li>
+                                    <li><strong>Open/Close</strong> files</li>
+                                    <li><strong>Read/Write</strong> data</li>
+                                    <li><strong>Delete</strong> files</li>
+                                    <li><strong>Manage metadata</strong> (size, date, permissions)</li>
+                                </ol>
+                            </div>
+
+                            <div class="uniform-io">
+                                <h4>Uniform I/O Interface:</h4>
+                                <ul>
+                                    <li><strong>Everything is a file</strong> in UNIX</li>
+                                    <li>Same commands work for files, devices, pipes</li>
+                                    <li><code>cat file.txt</code> and <code>cat /dev/mouse</code> use same interface</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of file system like a <strong>library</strong>:</p>
+                                <ul>
+                                    <li><strong>Files</strong> = Books</li>
+                                    <li><strong>Directories</strong> = Shelves/Sections</li>
+                                    <li><strong>Permissions</strong> = Library card levels</li>
+                                    <li><strong>Metadata</strong> = Book catalog information</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Memory Management Section -->
+                        <div class="topic-section" id="memory-management">
+                            <h3>🧠 3. Memory Management</h3>
+                            
+                            <div class="key-problems">
+                                <h4>Key Problems to Solve:</h4>
+                                <ol>
+                                    <li><strong>Multiple processes</strong> sharing memory</li>
+                                    <li><strong>Protection</strong> between processes</li>
+                                    <li><strong>Performance</strong> optimization</li>
+                                    <li><strong>Memory allocation</strong> efficiency</li>
+                                </ol>
+                            </div>
+
+                            <div class="address-types">
+                                <h4>Address Types:</h4>
+                                <ul>
+                                    <li><strong>Logical Address:</strong> What the program sees</li>
+                                    <li><strong>Physical Address:</strong> Actual memory location</li>
+                                    <li><strong>Virtual Address:</strong> Same as logical (in virtual memory systems)</li>
+                                </ul>
+                            </div>
+
+                            <div class="mmu-diagram">
+                                <h4>Memory Management Unit (MMU):</h4>
+                                <div class="code-block">
+                                    <pre>CPU → [Logical Address] → MMU → [Physical Address] → Memory</pre>
+                                </div>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of memory like <strong>parking spaces</strong>:</p>
+                                <ul>
+                                    <li><strong>Fixed partitions</strong> = Assigned parking spots</li>
+                                    <li><strong>Dynamic allocation</strong> = First-come, first-served parking</li>
+                                    <li><strong>Fragmentation</strong> = Empty spaces too small for cars</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Virtual Memory Section -->
+                        <div class="topic-section" id="virtual-memory">
+                            <h3>💾 4. Virtual Memory</h3>
+                            
+                            <div class="what-is-vm">
+                                <h4>What is Virtual Memory?</h4>
+                                <ul>
+                                    <li><strong>Illusion</strong> of large memory using disk storage</li>
+                                    <li>Programs can be <strong>larger than physical RAM</strong></li>
+                                    <li>Each process has its own <strong>virtual address space</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="page-translation">
+                                <h4>Page Address Translation:</h4>
+                                <div class="code-block">
+                                    <pre>Logical Address: 0x12345 (with 4KB pages)
+┌─────────┬─────────┐
+│  0x12   │  0x345  │
+│ Page #  │ Offset  │
+└─────────┴─────────┘</pre>
+                                </div>
+                            </div>
+
+                            <div class="key-benefits">
+                                <h4>Key Benefits:</h4>
+                                <ol>
+                                    <li><strong>Programs larger than RAM</strong> can run</li>
+                                    <li><strong>Memory protection</strong> between processes</li>
+                                    <li><strong>Shared libraries</strong> save memory</li>
+                                    <li><strong>Simplified programming</strong> (don't worry about physical addresses)</li>
+                                </ol>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of virtual memory like a <strong>library with storage</strong>:</p>
+                                <ul>
+                                    <li><strong>Pages</strong> = Books</li>
+                                    <li><strong>Physical memory</strong> = Reading room shelves</li>
+                                    <li><strong>Disk storage</strong> = Warehouse</li>
+                                    <li><strong>Page faults</strong> = Going to warehouse to get books</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Process Management Section -->
+                        <div class="topic-section" id="process-management">
+                            <h3>⚙️ 5. Process Management</h3>
+                            
+                            <div class="what-is-process">
+                                <h4>What is a Process?</h4>
+                                <ul>
+                                    <li><strong>Program in execution</strong></li>
+                                    <li>Has its own <strong>memory space, registers, files</strong></li>
+                                    <li>Managed by <strong>Process Control Block (PCB)</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="process-states">
+                                <h4>Process States (5-State Model):</h4>
+                                <div class="code-block">
+                                    <pre>NEW → READY → RUNNING → EXIT
+        ↑        ↓
+        └── BLOCKED</pre>
+                                </div>
+                                <ol>
+                                    <li><strong>NEW:</strong> Being created, not yet ready</li>
+                                    <li><strong>READY:</strong> Waiting for CPU time</li>
+                                    <li><strong>RUNNING:</strong> Currently executing</li>
+                                    <li><strong>BLOCKED:</strong> Waiting for I/O or event</li>
+                                    <li><strong>EXIT:</strong> Finished execution</li>
+                                </ol>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of processes like <strong>people in a restaurant</strong>:</p>
+                                <ul>
+                                    <li><strong>NEW</strong> = Being seated</li>
+                                    <li><strong>READY</strong> = Waiting to order</li>
+                                    <li><strong>RUNNING</strong> = Being served</li>
+                                    <li><strong>BLOCKED</strong> = Waiting for food</li>
+                                    <li><strong>EXIT</strong> = Leaving restaurant</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- CPU Scheduling Section -->
+                        <div class="topic-section" id="cpu-scheduling">
+                            <h3>🔄 6. CPU Scheduling</h3>
+                            
+                            <div class="multitasking-types">
+                                <h4>Multitasking Types:</h4>
+                                <ol>
+                                    <li><strong>Cooperative:</strong> Processes voluntarily give up CPU</li>
+                                    <li><strong>Preemptive:</strong> OS forces process switches</li>
+                                </ol>
+                            </div>
+
+                            <div class="scheduling-goals">
+                                <h4>Scheduling Goals:</h4>
+                                <ul>
+                                    <li><strong>Low latency</strong> (quick response)</li>
+                                    <li><strong>High throughput</strong> (more work done)</li>
+                                    <li><strong>Fairness</strong> (all processes get turns)</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of CPU scheduling like a <strong>traffic light system</strong>:</p>
+                                <ul>
+                                    <li><strong>Timeslice</strong> = Green light duration</li>
+                                    <li><strong>Context switch</strong> = Traffic light change</li>
+                                    <li><strong>I/O-bound processes</strong> = Pedestrians (quick crossing)</li>
+                                    <li><strong>CPU-bound processes</strong> = Trucks (need longer green light)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- IPC Section -->
+                        <div class="topic-section" id="ipc">
+                            <h3>🔗 7. Inter-Process Communication (IPC)</h3>
+                            
+                            <div class="why-ipc">
+                                <h4>Why Do Processes Need to Communicate?</h4>
+                                <ul>
+                                    <li><strong>Share data</strong></li>
+                                    <li><strong>Coordinate activities</strong></li>
+                                    <li><strong>Notify about events</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="ipc-mechanisms">
+                                <h4>IPC Mechanisms:</h4>
+                                <ul>
+                                    <li><strong>Pipes:</strong> Data flows one direction (FIFO)</li>
+                                    <li><strong>Semaphores:</strong> Control access to resources</li>
+                                    <li><strong>Message Queues:</strong> Send/receive messages</li>
+                                    <li><strong>Shared Memory:</strong> Direct memory sharing (fastest)</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of IPC like <strong>communication methods</strong>:</p>
+                                <ul>
+                                    <li><strong>Pipes</strong> = Telephone line</li>
+                                    <li><strong>Shared Memory</strong> = Whiteboard in shared room</li>
+                                    <li><strong>Message Queues</strong> = Email system</li>
+                                    <li><strong>Signals</strong> = Text messages</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Signals Section -->
+                        <div class="topic-section" id="signals">
+                            <h3>📡 8. Signals</h3>
+                            
+                            <div class="what-are-signals">
+                                <h4>What are Signals?</h4>
+                                <ul>
+                                    <li><strong>Software interrupts</strong></li>
+                                    <li><strong>Asynchronous notifications</strong></li>
+                                    <li>Cause <strong>predefined actions</strong> or <strong>custom handlers</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="common-signals">
+                                <h4>Common UNIX Signals:</h4>
+                                <ul>
+                                    <li><strong>SIGINT (2):</strong> Interrupt (Ctrl+C)</li>
+                                    <li><strong>SIGTERM (15):</strong> Termination request</li>
+                                    <li><strong>SIGKILL (9):</strong> Force kill (cannot be caught)</li>
+                                    <li><strong>SIGALRM (14):</strong> Timer alarm</li>
+                                    <li><strong>SIGHUP (1):</strong> Hangup</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of signals like <strong>emergency alerts</strong>:</p>
+                                <ul>
+                                    <li><strong>SIGINT</strong> = Fire alarm (can be disabled)</li>
+                                    <li><strong>SIGKILL</strong> = Sprinkler system (cannot be disabled)</li>
+                                    <li><strong>SIGTERM</strong> = Polite evacuation request</li>
+                                    <li><strong>Signal handlers</strong> = Emergency response plans</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Synchronization Section -->
+                        <div class="topic-section" id="synchronization">
+                            <h3>🔒 9. Synchronization & Deadlocks</h3>
+                            
+                            <div class="critical-section">
+                                <h4>Critical Section Problem:</h4>
+                                <ul>
+                                    <li><strong>Code section</strong> accessing shared resources</li>
+                                    <li>Only <strong>one process</strong> should be in critical section at a time</li>
+                                    <li>Need <strong>mutual exclusion</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="deadlock-conditions">
+                                <h4>Four Deadlock Conditions (ALL must be present):</h4>
+                                <ol>
+                                    <li><strong>Mutual Exclusion:</strong> Resources cannot be shared</li>
+                                    <li><strong>Hold and Wait:</strong> Process holds resources while waiting for more</li>
+                                    <li><strong>No Preemption:</strong> Resources cannot be forcibly taken</li>
+                                    <li><strong>Circular Wait:</strong> Circular chain of waiting processes</li>
+                                </ol>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of deadlock like <strong>traffic gridlock</strong>:</p>
+                                <ul>
+                                    <li><strong>Mutual exclusion</strong> = Only one car per lane</li>
+                                    <li><strong>Hold and wait</strong> = Cars blocking intersections</li>
+                                    <li><strong>No preemption</strong> = Cannot move cars out of way</li>
+                                    <li><strong>Circular wait</strong> = Cars waiting in circle</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- I/O Management Section -->
+                        <div class="topic-section" id="io-management">
+                            <h3>💿 10. I/O & Device Management</h3>
+                            
+                            <div class="device-types">
+                                <h4>Device Types:</h4>
+                                <ul>
+                                    <li><strong>Block devices:</strong> Disks (fixed-size blocks)</li>
+                                    <li><strong>Character devices:</strong> Keyboards, mice (character streams)</li>
+                                    <li><strong>Network devices:</strong> Network interfaces</li>
+                                </ul>
+                            </div>
+
+                            <div class="device-drivers">
+                                <h4>Device Drivers:</h4>
+                                <ul>
+                                    <li><strong>Software</strong> that controls hardware</li>
+                                    <li><strong>Translate</strong> generic I/O requests to device-specific operations</li>
+                                    <li><strong>Hide complexity</strong> from applications</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of device drivers like <strong>translators</strong>:</p>
+                                <ul>
+                                    <li><strong>Applications</strong> speak "English"</li>
+                                    <li><strong>Devices</strong> speak different "languages"</li>
+                                    <li><strong>Drivers</strong> translate between them</li>
+                                    <li><strong>Generic I/O</strong> provides common "dictionary"</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- System Calls Section -->
+                        <div class="topic-section" id="system-calls">
+                            <h3>🔧 11. System Calls</h3>
+                            
+                            <div class="what-are-syscalls">
+                                <h4>What are System Calls?</h4>
+                                <ul>
+                                    <li><strong>Interface</strong> between user programs and kernel</li>
+                                    <li><strong>Controlled way</strong> to access OS services</li>
+                                    <li>Require <strong>mode switch</strong> (user → kernel)</li>
+                                </ul>
+                            </div>
+
+                            <div class="common-syscalls">
+                                <h4>Common System Calls:</h4>
+                                <ul>
+                                    <li><strong>File operations:</strong> open(), read(), write(), close()</li>
+                                    <li><strong>Process control:</strong> fork(), exec(), wait(), exit()</li>
+                                    <li><strong>Memory management:</strong> brk(), mmap()</li>
+                                    <li><strong>Communication:</strong> pipe(), socket()</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of system calls like <strong>going to government office</strong>:</p>
+                                <ul>
+                                    <li><strong>Library functions</strong> = Things you can do at home</li>
+                                    <li><strong>System calls</strong> = Things requiring official permission</li>
+                                    <li><strong>Mode switch</strong> = Security checkpoint to enter building</li>
+                                    <li><strong>Kernel</strong> = Government officials with special powers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Performance Section -->
+                        <div class="topic-section" id="performance">
+                            <h3>📈 12. Performance & Optimization</h3>
+                            
+                            <div class="key-concepts">
+                                <h4>Key Performance Concepts:</h4>
+                                <ul>
+                                    <li><strong>Thrashing:</strong> Excessive page swapping</li>
+                                    <li><strong>Locality of Reference:</strong> Programs access nearby/recent memory</li>
+                                    <li><strong>Working Set:</strong> Pages process actively uses</li>
+                                </ul>
+                            </div>
+
+                            <div class="monitoring-tools">
+                                <h4>Performance Monitoring:</h4>
+                                <ul>
+                                    <li><strong>ps command:</strong> Shows currently running processes</li>
+                                    <li><strong>top command:</strong> Real-time system performance</li>
+                                    <li><strong>Swappiness (0-100):</strong> Controls swap aggressiveness</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of performance like <strong>traffic flow</strong>:</p>
+                                <ul>
+                                    <li><strong>Thrashing</strong> = Traffic jam (cars moving very slowly)</li>
+                                    <li><strong>Locality</strong> = Most trips are to nearby places</li>
+                                    <li><strong>Working set</strong> = Places you visit regularly</li>
+                                    <li><strong>Monitoring tools</strong> = Traffic cameras and reports</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Security Section -->
+                        <div class="topic-section" id="security">
+                            <h3>🛡️ 13. Security</h3>
+                            
+                            <div class="security-principles">
+                                <h4>Security Principles:</h4>
+                                <ul>
+                                    <li><strong>Principle of Least Privilege:</strong> Give minimum access needed</li>
+                                    <li><strong>Memory Protection:</strong> Base and limit registers check bounds</li>
+                                    <li><strong>Access Control:</strong> Authentication, Authorization, Auditing</li>
+                                </ul>
+                            </div>
+
+                            <div class="common-threats">
+                                <h4>Common Security Threats:</h4>
+                                <ul>
+                                    <li><strong>Buffer Overflow:</strong> Writing past buffer boundaries</li>
+                                    <li><strong>Privilege Escalation:</strong> Gaining unauthorized access</li>
+                                    <li><strong>Race Conditions:</strong> Timing-dependent vulnerabilities</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of security like <strong>building security</strong>:</p>
+                                <ul>
+                                    <li><strong>Least privilege</strong> = Key cards with limited access</li>
+                                    <li><strong>Memory protection</strong> = Locked doors between departments</li>
+                                    <li><strong>Buffer overflow</strong> = Climbing through windows</li>
+                                    <li><strong>Access control</strong> = Security guards and cameras</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Modern Features Section -->
+                        <div class="topic-section" id="modern-features">
+                            <h3>🚀 14. Modern OS Features</h3>
+                            
+                            <div class="virtualization">
+                                <h4>Virtualization:</h4>
+                                <ul>
+                                    <li><strong>Traditional Virtualization:</strong> Hypervisor manages multiple OS instances</li>
+                                    <li><strong>Containerization:</strong> OS-level virtualization, shared kernel</li>
+                                </ul>
+                            </div>
+
+                            <div class="kernel-architectures">
+                                <h4>Kernel Architectures:</h4>
+                                <ul>
+                                    <li><strong>Monolithic Kernel:</strong> All services in kernel space</li>
+                                    <li><strong>Microkernel:</strong> Minimal kernel, services in user space</li>
+                                </ul>
+                            </div>
+
+                            <div class="memory-aid">
+                                <h4>💡 Memory Aid:</h4>
+                                <p>Think of modern features like <strong>building evolution</strong>:</p>
+                                <ul>
+                                    <li><strong>Monolithic</strong> = Single large building</li>
+                                    <li><strong>Microkernel</strong> = Campus with specialized buildings</li>
+                                    <li><strong>Containers</strong> = Apartments in same building</li>
+                                    <li><strong>VMs</strong> = Separate houses</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Quick Reference -->
+                        <div class="quick-reference">
+                            <h3>📋 Quick Reference Cards</h3>
+                            
+                            <div class="reference-grid">
+                                <div class="reference-card">
+                                    <h4>UNIX Permissions</h4>
+                                    <div class="code-block">
+                                        <pre>rwx = 7    r-x = 5    r-- = 4
+rw- = 6    -wx = 3    -w- = 2
+--x = 1    --- = 0</pre>
+                                    </div>
+                                </div>
+
+                                <div class="reference-card">
+                                    <h4>Process States</h4>
+                                    <div class="code-block">
+                                        <pre>NEW → READY ⟷ RUNNING → EXIT
+        ↕      ↓
+    BLOCKED ←─┘</pre>
+                                    </div>
+                                </div>
+
+                                <div class="reference-card">
+                                    <h4>Common Signals</h4>
+                                    <div class="code-block">
+                                        <pre>SIGINT  (2)  - Ctrl+C
+SIGTERM (15) - Termination request
+SIGKILL (9)  - Force kill
+SIGALRM (14) - Timer</pre>
+                                    </div>
+                                </div>
+
+                                <div class="reference-card">
+                                    <h4>Deadlock Conditions</h4>
+                                    <div class="code-block">
+                                        <pre>1. Mutual Exclusion
+2. Hold and Wait
+3. No Preemption
+4. Circular Wait</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Study Tips -->
+                        <div class="study-tips">
+                            <h3>💡 Study Tips</h3>
+                            <ol>
+                                <li><strong>Draw diagrams</strong> for memory management concepts</li>
+                                <li><strong>Practice UNIX commands</strong> for file permissions</li>
+                                <li><strong>Trace through</strong> process state transitions</li>
+                                <li><strong>Work through</strong> deadlock scenarios</li>
+                                <li><strong>Understand the "why"</strong> behind each concept</li>
+                                <li><strong>Connect concepts</strong> - how they work together</li>
+                                <li><strong>Use analogies</strong> to remember complex topics</li>
+                            </ol>
+                            
+                            <div class="final-note">
+                                <p><strong>Remember:</strong> Operating systems are about <strong>resource management</strong> and <strong>coordination</strong>. Every concept serves these fundamental goals!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
